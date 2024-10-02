@@ -2,7 +2,9 @@ const express = require('express')
 const app = express()
 const notes = require('./data/notes')
 const dotenv = require ('dotenv')
+const connectDB = require('./db')
 dotenv.config()
+connectDB()
 const PORT = process.env.PORT || 5000;
 app.listen(
     PORT,

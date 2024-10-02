@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect  , useState} from "react";
 import { Link } from "react-router-dom";
 import { Card, Button, Badge, Accordion } from "react-bootstrap";
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import MainScreen from "../../components/MainScreen";
-import notes from "./../../data/notes";
+
 import axios from 'axios'
 
 function CustomToggle({ children, eventKey }) {
@@ -22,11 +22,14 @@ function CustomToggle({ children, eventKey }) {
     );
   }
 
-  const fetchNotes = async () => {
-    const data = await axios.get('/api/notes')
-    console.log(data)
-  }
 const MyNotes = () => {
+
+  const [notes , setNotes]  = useState([])
+  const fetchNotes = async () => {
+    
+    const {data} = await axios.get('/api/notes')
+    setNotes(data)
+  }
     
 useEffect(()=> {
 
